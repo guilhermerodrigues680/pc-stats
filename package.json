@@ -2,9 +2,9 @@
   "name": "pc-stats",
   "version": "0.0.1-alpha.0",
   "description": "",
-  "main": "src",
+  "main": "server.js",
   "scripts": {
-    "serve": "nodemon --inspect ./src/index.js",
+    "serve": "nodemon --inspect ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

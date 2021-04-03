@@ -7,10 +7,11 @@
   <title>PC Monitoring</title>
 </head>
 <body>
-  okss
+  <input type="text" id="input-msg">
+  <button id="btn-msg">Send Simple Message</button>
+
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    // localStorage.debug = 'socket.io-client:socket'
     const socket = io();
 
     socket.onAny((event, ...args) => {
@@ -21,16 +22,22 @@
       console.log(args);
     });
 
+    socket.on("pc-stats", pcStats => {
+      console.log(pcStats);
+    });
+
     socket.on("connect_error", (err) => {
       console.error(err)
       // if (err.message === "invalid username") {
-      //   this.usernameAlreadySelected = false;
+      // ...
       // }
     });
 
-    // setInterval(() => {
-    //   socket.emit("debug");
-    // }, 1000)
+    document.querySelector('#btn-msg').addEventListener('click', () => {
+      const msg = document.querySelector('#input-msg').value;
+      const evt = socket.emit("simple-msg", msg);
+      console.log('send msg', evt)
+    });
   </script>
 </body>
 </html>

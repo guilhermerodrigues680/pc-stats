@@ -11,7 +11,7 @@ async function getFreeSpace() {
     console.log(`Free space: ${free}`, `Free space: ${util.formatBytes(free)}`);
     console.log(`Available space: ${available}`, `Available space: ${util.formatBytes(available)}`);
     console.log(`Total space: ${total}`, `Total space: ${util.formatBytes(total)}`);
-    return free
+    return { free, available, total }
   } catch (err) {
     console.error(err)
     return 0
