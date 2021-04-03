@@ -5,7 +5,8 @@ async function getPcStats() {
   const space = await systemUtil.getFreeSpace();
   return {
     cpu,
-    space
+    space,
+    time: Date.now()
   }
 }
 

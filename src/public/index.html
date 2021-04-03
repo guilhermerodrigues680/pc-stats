@@ -5,39 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PC Monitoring</title>
+  <!-- Load plotly.js into the DOM -->
+  <link rel="stylesheet" href="style.css">
+	<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
 <body>
   <input type="text" id="input-msg">
   <button id="btn-msg">Send Simple Message</button>
 
+  <div class="charts">
+    <div id='cpu-graph'><!-- Plotly chart will be drawn inside this DIV --></div>
+    <div id='space-graph'><!-- Plotly chart will be drawn inside this DIV --></div>
+  </div>
+
+
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-
-    socket.onAny((event, ...args) => {
-      console.log(event, args);
-    });
-
-    socket.on("users", (args) => {
-      console.log(args);
-    });
-
-    socket.on("pc-stats", pcStats => {
-      console.log(pcStats);
-    });
-
-    socket.on("connect_error", (err) => {
-      console.error(err)
-      // if (err.message === "invalid username") {
-      // ...
-      // }
-    });
-
-    document.querySelector('#btn-msg').addEventListener('click', () => {
-      const msg = document.querySelector('#input-msg').value;
-      const evt = socket.emit("simple-msg", msg);
-      console.log('send msg', evt)
-    });
-  </script>
+  <script src="client.js"></script>
 </body>
 </html>
