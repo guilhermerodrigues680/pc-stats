@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Monitoring</title>
+</head>
+<body>
+  okss
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // localStorage.debug = 'socket.io-client:socket'
+    const socket = io();
+
+    socket.onAny((event, ...args) => {
+      console.log(event, args);
+    });
+
+    socket.on("users", (args) => {
+      console.log(args);
+    });
+
+    socket.on("connect_error", (err) => {
+      console.error(err)
+      // if (err.message === "invalid username") {
+      //   this.usernameAlreadySelected = false;
+      // }
+    });
+
+    // setInterval(() => {
+    //   socket.emit("debug");
+    // }, 1000)
+  </script>
+</body>
+</html>
